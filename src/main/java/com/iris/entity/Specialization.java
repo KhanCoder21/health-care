@@ -21,6 +21,14 @@ public class Specialization {
 	@Column(name="spec_note")
 	private String spec_Note;
 
+	public Specialization() {
+	}
+	public Specialization(Long id, String specCode, String specName, String spec_Note) {
+		this.id = id;
+		this.specCode = specCode;
+		this.specName = specName;
+		this.spec_Note = spec_Note;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -45,7 +53,7 @@ public class Specialization {
 	public void setSpec_Note(String spec_Note) {
 		this.spec_Note = spec_Note;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Specialization [id=" + id + ", specCode=" + specCode + ", specName=" + specName + ", spec_Note="
