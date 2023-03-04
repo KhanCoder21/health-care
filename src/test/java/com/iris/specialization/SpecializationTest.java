@@ -29,24 +29,26 @@ public class SpecializationTest {
 	private SpecializationRepository repo;
 
 	/**
-	 *  Test save operation
+	 * Test save operation
 	 */
+
 	@Test
 	@Order(1)
 	public void testSpecCreate() {
-		Specialization spec = new Specialization(null, "CRDLS","Cardiologists", "They are expert on the heart deasese");
+		Specialization spec = new Specialization(null, "CRDLS", "Cardiologists",
+				"They are expert on the heart deasese");
 		Specialization savedSpec = repo.save(spec);
 		System.out.println(savedSpec);
 		assertNotNull(savedSpec.getId(), "Spec is not created");
 	}
 
-	@Test 
+	@Test
 	@Order(2)
 	public void testSpecFetchAll() {
 		List<Specialization> specList = repo.findAll();
-		System.out.println("Printing specList: "+specList);
+		System.out.println("Printing specList: " + specList);
 		assertNotNull(specList);
-		if(specList.isEmpty()) {
+		if (specList.isEmpty()) {
 			fail("No data exist in data base");
 		}
 	}
