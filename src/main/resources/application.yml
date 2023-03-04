@@ -1,5 +1,5 @@
 server:
-  port: 9096
+  port: 9090
 spring:
   datasource:
     username: sa
@@ -12,4 +12,4 @@ spring:
         show_sql: true
         format_sql: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update

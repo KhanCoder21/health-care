@@ -19,7 +19,7 @@ public class Specialization {
 	@Column(name = "spec_name")
 	private String specName;
 	@Column(name = "spec_note")
-	private String spec_Note;
+	private String specNote;
 
 	public Specialization() {
 	}
@@ -28,7 +28,7 @@ public class Specialization {
 		this.id = id;
 		this.specCode = specCode;
 		this.specName = specName;
-		this.spec_Note = spec_Note;
+		this.specNote = specNote;
 	}
 
 	public Long getId() {
@@ -55,18 +55,18 @@ public class Specialization {
 		this.specName = specName;
 	}
 
-	public String getSpec_Note() {
-		return spec_Note;
+	public String getSpecNote() {
+		return specNote;
 	}
 
-	public void setSpec_Note(String spec_Note) {
-		this.spec_Note = spec_Note;
+	public void setSpecNote(String specNote) {
+		this.specNote = specNote;
 	}
 
 	@Override
 	public String toString() {
-		return "Specialization [id=" + id + ", specCode=" + specCode + ", specName=" + specName + ", spec_Note="
-				+ spec_Note + "]";
+		return "Specialization [id=" + id + ", specCode=" + specCode + ", specName=" + specName + ", specNote="
+				+ specNote + "]";
 	}
 
 }

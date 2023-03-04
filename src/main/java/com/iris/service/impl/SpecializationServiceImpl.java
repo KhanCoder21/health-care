@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.iris.entity.Specialization;
 import com.iris.repository.SpecializationRepository;
+import com.iris.service.SpecializationService;
 
 @Service
-public class SpecializationService implements com.iris.service.SpecializationService {
+public class SpecializationServiceImpl implements SpecializationService {
 
 	@Autowired
 	private SpecializationRepository repository;
@@ -22,6 +23,9 @@ public class SpecializationService implements com.iris.service.SpecializationSer
 
 	@Override
 	public List<Specialization> getAllSpecialization() {
+		Specialization spec = new Specialization(null, "CRDLS", "Cardiologists",
+				"They are expert on the heart deasese");
+		Specialization savedSpec = repository.save(spec);
 		return repository.findAll();
 	}
 
