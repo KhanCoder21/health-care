@@ -31,7 +31,6 @@ public class SpecializationTest {
 	/**
 	 * Test save operation
 	 */
-
 	@Test
 	@Order(1)
 	public void testSpecCreate() {

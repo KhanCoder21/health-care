@@ -23,9 +23,6 @@ public class SpecializationServiceImpl implements SpecializationService {
 
 	@Override
 	public List<Specialization> getAllSpecialization() {
-		Specialization spec = new Specialization(null, "CRDLS", "Cardiologists",
-				"They are expert on the heart deasese");
-		Specialization savedSpec = repository.save(spec);
 		return repository.findAll();
 	}
 

@@ -3,6 +3,7 @@ package com.iris.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,7 +12,7 @@ import javax.persistence.Table;
 public class Specialization {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "spec_id")
 	private Long id;
 	@Column(name = "spec_code")
@@ -24,7 +25,8 @@ public class Specialization {
 	public Specialization() {
 	}
 
-	public Specialization(Long id, String specCode, String specName, String spec_Note) {
+	public Specialization(Long id, String specCode, String specName, String specNote) {
+		super();
 		this.id = id;
 		this.specCode = specCode;
 		this.specName = specName;
