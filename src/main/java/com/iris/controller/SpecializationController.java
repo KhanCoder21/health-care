@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iris.entity.Specialization;
 import com.iris.service.SpecializationService;
@@ -29,7 +31,8 @@ public class SpecializationController {
 	}
 
 	/**
-	 *  2. On submit from save data
+	 * 2. On submit from save data
+	 * 
 	 * @param specialization
 	 * @param model
 	 * @return
@@ -37,7 +40,7 @@ public class SpecializationController {
 	@PostMapping("/save")
 	public String saveRegisterForm(@ModelAttribute Specialization specialization, Model model) {
 		Long specId = service.saveSpecialization(specialization);
-		String message= "Record "+specId+" is created successfully";
+		String message = "Record " + specId + " is created successfully";
 		model.addAttribute("message", message);
 		return "specialization-register";
 	}
@@ -49,11 +52,26 @@ public class SpecializationController {
 	 * @return
 	 */
 	@GetMapping("/all")
-	public String viewAllSpecialization(Model model) {
+	public String viewAllSpecialization(Model model,
+			@RequestParam(value = "message", required = false) String message) {
 		List<Specialization> allSpecialization = service.getAllSpecialization();
 		System.out.println("Printing allSpecialization: " + allSpecialization);
 		model.addAttribute("allSpecialization", allSpecialization);
+		model.addAttribute("message", message);
 		return "specialization-data";
+	}
+
+	/**
+	 * 4. delete record by id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/delete")
+	public String deleteData(@RequestParam Long id, RedirectAttributes attributes) {
+		service.removeSpecializationById(id);
+		attributes.addAttribute("message", "Record " + id + " is removed successfully");
+		return "redirect:all";
 	}
 
 }
