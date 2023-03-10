@@ -15,11 +15,11 @@ public class Specialization {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "spec_id")
 	private Long id;
-	@Column(name = "spec_code")
+	@Column(name = "spec_code", nullable = false, unique = true)
 	private String specCode;
-	@Column(name = "spec_name")
+	@Column(name = "spec_name", nullable = false, unique = true)
 	private String specName;
-	@Column(name = "spec_note")
+	@Column(name = "spec_note", length = 500)
 	private String specNote;
 
 	public Specialization() {

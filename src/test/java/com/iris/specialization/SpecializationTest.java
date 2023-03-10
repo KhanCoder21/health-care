@@ -34,7 +34,7 @@ public class SpecializationTest {
 	@Test
 	@Order(1)
 	public void testSpecCreate() {
-		Specialization spec = new Specialization(null, "CRDLS", "Cardiologists",
+		Specialization spec = new Specialization(null, "CRDLS1", "Cardiologists1",
 				"They are expert on the heart deasese");
 		Specialization savedSpec = repo.save(spec);
 		System.out.println(savedSpec);
