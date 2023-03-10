@@ -20,6 +20,7 @@ public class SpecializationServiceImpl implements SpecializationService {
 	public Long saveSpecialization(Specialization specialization) {
 		return repository.save(specialization).getId();
 	}
+
 	@Override
 	public List<Specialization> getAllSpecialization() {
 		System.out.println("Find all method called");
@@ -28,6 +29,7 @@ public class SpecializationServiceImpl implements SpecializationService {
 
 	@Override
 	public void removeSpecializationById(Long id) {
+		System.out.println("deleteById method called");
 		repository.deleteById(id);
 
 	}
