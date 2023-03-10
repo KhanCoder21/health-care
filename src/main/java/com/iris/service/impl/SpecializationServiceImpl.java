@@ -36,6 +36,7 @@ public class SpecializationServiceImpl implements SpecializationService {
 
 	@Override
 	public Specialization getSpecializationById(Long id) {
+		System.out.println("getSpecializationById method called");
 		Optional<Specialization> optional = repository.findById(id);
 		if (optional.isPresent()) {
 			return optional.get();
