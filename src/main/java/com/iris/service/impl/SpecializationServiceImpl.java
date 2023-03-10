@@ -46,6 +46,7 @@ public class SpecializationServiceImpl implements SpecializationService {
 
 	@Override
 	public void updateSpecialization(Specialization specialization) {
+		System.out.println("save method called");
 		repository.save(specialization);
 	}
 
