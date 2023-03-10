@@ -22,6 +22,7 @@ public class SpecializationServiceImpl implements SpecializationService {
 	}
 	@Override
 	public List<Specialization> getAllSpecialization() {
+		System.out.println("Find all method called");
 		return repository.findAll();
 	}
 
