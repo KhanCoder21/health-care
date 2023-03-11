@@ -16,4 +16,6 @@ public interface SpecializationService {
 
 	public void updateSpecialization(Specialization specialization);
 
+	public boolean isSpecCodeExist(String specCode);
+
 }
