@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iris.entity.Specialization;
+import com.iris.exception.SpecializationNotFoundException;
 import com.iris.service.SpecializationService;
 
 @Controller
@@ -70,8 +71,13 @@ public class SpecializationController {
 	 */
 	@GetMapping("/delete")
 	public String deleteData(@RequestParam Long id, RedirectAttributes attributes) {
-		service.removeSpecializationById(id);
-		attributes.addAttribute("message", "Record " + id + " is removed successfully");
+		try {
+			service.removeSpecializationById(id);
+			attributes.addAttribute("message", "Record " + id + " is removed successfully");
+		} catch (SpecializationNotFoundException e) {
+			e.printStackTrace();
+			attributes.addAttribute("message", e.getMessage());
+		}
 		return "redirect:all";
 	}
 
@@ -82,10 +88,18 @@ public class SpecializationController {
 	 * @return
 	 */
 	@GetMapping("/edit")
-	public String showEditPage(@RequestParam Long id, Model model) {
-		Specialization spec = service.getSpecializationById(id);
-		model.addAttribute("specialization", spec);
-		return "specialization-edit";
+	public String showEditPage(@RequestParam Long id, Model model, RedirectAttributes attributes) {
+		String page = null;
+		try {
+			Specialization spec = service.getSpecializationById(id);
+			model.addAttribute("specialization", spec);
+			page = "specialization-edit";
+		} catch (SpecializationNotFoundException e) {
+			e.printStackTrace();
+			attributes.addAttribute("message", e.getMessage());
+			page = "redirect:all";
+		}
+		return page;
 	}
 
 	/**

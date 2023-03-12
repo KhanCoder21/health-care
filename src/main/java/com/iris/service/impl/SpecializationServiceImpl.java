@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.iris.entity.Specialization;
+import com.iris.exception.SpecializationNotFoundException;
 import com.iris.repository.SpecializationRepository;
 import com.iris.service.SpecializationService;
 
@@ -30,19 +31,18 @@ public class SpecializationServiceImpl implements SpecializationService {
 
 	@Override
 	public void removeSpecializationById(Long id) {
-		System.out.println("deleteById method called");
-		repository.deleteById(id);
-
+		repository.delete(getSpecializationById(id));
 	}
 
 	@Override
 	public Specialization getSpecializationById(Long id) {
-		System.out.println("getSpecializationById method called");
-		Optional<Specialization> optional = repository.findById(id);
-		if (optional.isPresent()) {
-			return optional.get();
-		} else
-			return null;
+		/*
+		 * Optional<Specialization> optional = repository.findById(id); if
+		 * (optional.isPresent()) { return optional.get(); } else throw new
+		 * SpecializationNotFoundException(id + " not found");
+		 */
+		return repository.findById(id).orElseThrow(() -> new SpecializationNotFoundException(id + " not found"));
+
 	}
 
 	@Override
