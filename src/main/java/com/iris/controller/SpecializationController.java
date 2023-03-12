@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iris.entity.Specialization;
 import com.iris.exception.SpecializationNotFoundException;
+import com.iris.reports.SpecializationExcelView;
 import com.iris.service.SpecializationService;
 
 @Controller
@@ -103,7 +105,7 @@ public class SpecializationController {
 	}
 
 	/**
-	 * 4. delete record by id
+	 * 6. delete record by id
 	 * 
 	 * @param id
 	 * @return
@@ -115,6 +117,12 @@ public class SpecializationController {
 		return "redirect:all";
 	}
 
+	/**
+	 * 7. validate spec code
+	 * 
+	 * @param code
+	 * @return
+	 */
 	@GetMapping("/checkcode")
 	@ResponseBody
 	public String validateSpecCode(@RequestParam String code) {
@@ -125,4 +133,13 @@ public class SpecializationController {
 		return message;
 	}
 
+	@GetMapping("/excel")
+	public ModelAndView exportSpecToExcel() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setView(new SpecializationExcelView());
+		// read data from database base send to excel class
+		List<Specialization> specList = service.getAllSpecialization();
+		modelAndView.addObject("specList", specList);
+		return modelAndView;
+	}
 }
